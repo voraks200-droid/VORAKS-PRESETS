@@ -10,6 +10,7 @@
       background-color: #f5f5f5;
       margin: 0;
       padding: 0;
+      text-align: center; /* keeps your main content centered */
     }
     header {
       background: black;
@@ -44,19 +45,16 @@
       color: black;
       display: block;
     }
-
-    /* 💬 Comment Section Styling */
+    /* comment section container */
     #comments {
-      max-width: 1200px;  /* Wider than before */
-      margin: 50px auto;  /* Adds spacing and centers */
-      padding: 0 20px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 16px;
+      text-align: left; /* keeps comment box aligned properly */
     }
     #comments h2 {
       text-align: center;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
   </style>
 </head>
@@ -74,7 +72,7 @@
   <section id="HERO">
     <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
     <p>HUNDREDS OF FREE AND PAID PRESETS TO LEVEL UP YOUR EDITS</p>
-    <button>shop now</button>
+    <button>Shop Now</button>
   </section>
 
   <section id="presets">
@@ -96,18 +94,20 @@
     </a>
   </section>
 
-  <!-- 💬 Comment Section (Now Above Footer) -->
+  <!-- COMMENTS SECTION -->
   <section id="comments">
     <h2>Comments</h2>
     <script src="https://utteranc.es/client.js"
             repo="voraks200-droid/VORAKS-PRESETS"
             issue-term="pathname"
             label="comments"
-            theme="github-dark"
+            theme="github-light"
             crossorigin="anonymous"
             async>
     </script>
-    <noscript>Please enable JavaScript to view comments.</noscript>
+    <noscript>
+      Please enable JavaScript to view comments.
+    </noscript>
   </section>
 
   <footer>
