@@ -1,42 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>VORAKS ALIGHT MOTION PRESETS</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
+/* 📌 General Body Styles */
 body{
     font-family:Arial,sans-serif;
     background-color:#f5f5f5;
     margin:0;
     padding:0;
+    text-align: center;
 }
+
+/* 📌 Container for centering content */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 📌 Header Styles */
 header{
     background:black;
     color:white;
     padding:20px;
-    text-align:center;
 }
+
+/* 📌 Navigation Styles */
 nav a{
     color:white;
     margin:0 10px;
     text-decoration:none;
 }
+
+/* 📌 Section Styles */
 section{
     padding:20px;
 }
+
+/* 📌 Footer Styles */
 footer{
     background:black;
     color:white;
     text-align:center;
-    padding:10px
+    padding:10px;
 }
 
-/* 🎨 CSS FOR PRESET ALIGNMENT AND SPACING 🎨 */
+/* 📌 Preset Styles */
 .preset-link {
     display: block; 
     margin-bottom: 20px; 
-    text-align: center;
     text-decoration: none;
     color: black; 
+}
+
+.preset-link img {
+    width: 500px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
 }
 
 .preset-text {
@@ -45,51 +70,98 @@ footer{
     color: black;
     display: block; 
 }
+
+/* 📌 Comment Section Styles */
+#comments {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    text-align: left;
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+#comments h2 {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #333;
+}
 </style>
 </head>
 <body>
-<header>
-<h1>VORAKS PRESETS</h1>
-<nav>
-<a href="index.html">HOME</a>|
-<a href="ALIGHTMOTION.html">ALIGHT MOTION</a>|
-<a href="#">AFTER EFFECTS</a>|
-<a href="#">CONTACT</a>|
-</nav>
-</header>
 
-<section id="HERO">
-<h2>ALIGHT MOTION PRESETS</h2>
-<p>Different types of Alight Motion presets</p>
-</section>
+<div class="container">
+    <header>
+        <h1>VORAKS PRESETS</h1>
+        <nav>
+            <a href="index.html">HOME</a>|
+            <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>|
+            <a href="#">AFTER EFFECTS</a>|
+            <a href="#">CONTACT</a>|
+        </nav>
+    </header>
 
-<section id="presets">            
-    <h2>PRESET COLLECTION</h2>
-    
-    <a href="colourcorrection.html" class="preset-link">
-        <img src="20251003_222828.png" alt="COLOUR CORRECTION PRESETS" style="width:500px;">
-        <span class="preset-text">Colour Correction Presets</span>
-    </a>
-    
-    <a href="#" class="preset-link">
-        <img src="20251003_223734.png" alt="WATERMARK PRESETS" style="width:500px;">
-        <span class="preset-text">Watermark Presets</span>
-    </a>
-    
-    <a href="#" class="preset-link">
-        <img src="20251003_224013.png" alt="OUTRO PRESETS" style="width:500px;">
-        <span class="preset-text">Outro Presets</span>
-    </a>
-    
-    <a href="#" class="preset-link">
-        <img src="20251003_224158.png" alt="LOGO ANIMATION PRESETS" style="width:500px;">
-        <span class="preset-text">Logo Animation Presets</span>
-    </a>
-    
-</section>
+    <section id="HERO">
+        <h2>ALIGHT MOTION PRESETS</h2>
+        <p>Different types of Alight Motion presets</p>
+    </section>
 
-<footer>
-<p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
-</footer>
+    <section id="presets">            
+        <h2>PRESET COLLECTION</h2>
+
+        <a href="colourcorrection.html" class="preset-link">
+            <img src="20251003_222828.png" alt="COLOUR CORRECTION PRESETS">
+            <span class="preset-text">Colour Correction Presets</span>
+        </a>
+
+        <a href="#" class="preset-link">
+            <img src="20251003_223734.png" alt="WATERMARK PRESETS">
+            <span class="preset-text">Watermark Presets</span>
+        </a>
+
+        <a href="#" class="preset-link">
+            <img src="20251003_224013.png" alt="OUTRO PRESETS">
+            <span class="preset-text">Outro Presets</span>
+        </a>
+
+        <a href="#" class="preset-link">
+            <img src="20251003_224158.png" alt="LOGO ANIMATION PRESETS">
+            <span class="preset-text">Logo Animation Presets</span>
+        </a>
+    </section>
+
+    <!-- 📌 Comment Section -->
+    <section id="comments">
+        <h2>Comments</h2>
+        <script src="https://utteranc.es/client.js"
+                repo="voraks200-droid/VORAKS-PRESETS"
+                issue-term="pathname"
+                label="comments"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+        <noscript>
+            Please enable JavaScript to view comments.
+        </noscript>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
+    </footer>
+</div>
+
 </body>
 </html>
