@@ -1,115 +1,363 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VORAKS PRESETS</title>
+<title>Colour Correction Presets | VORAKS</title>
 <style>
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-    text-align: center;
 }
-
 header {
     background: black;
     color: white;
     padding: 20px;
+    text-align: center;
 }
-
-.search-container {
-    margin: 30px 0;
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
 }
-
-input[type="text"] {
+section {
+    padding: 20px;
+    text-align: center;
+}
+footer {
+    background: black;
+    color: white;
+    text-align: center;
     padding: 10px;
-    width: 250px;
-    font-size: 16px;
 }
 
+/* 🎨 Image slider style */
+.slider {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.slider img {
+    width: 100%;
+    display: none;
+}
+.slider img.active {
+    display: block;
+}
+
+/* 🎬 Video section */
+iframe {
+    width: 90%;
+    max-width: 600px;
+    height: 315px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* 🖱️ Button style */
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: black;
+    background: black;
     color: white;
     border: none;
-    cursor: pointer;
+    padding: 10px 20px;
+    margin-top: 15px;
     border-radius: 5px;
+    cursor: pointer;
 }
-
 button:hover {
-    background-color: #333;
+    background: gray;
 }
 
-.section {
-    background: white;
-    width: 80%;
-    max-width: 700px;
+/* 🔳 Section divider line */
+hr {
+    border: none;
+    border-top: 5px solid #ccc;
     margin: 40px auto;
-    padding: 20px;
+    width: 90%;
     border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.5s ease;
+}
+
+/* 🔍 Search box styling (centered and compact) */
+.search-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+}
+.search-container input[type="search"] {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 260px;
+    outline: none;
+}
+.search-container button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* suggestions */
+.search-suggestions {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+.search-suggestions a {
+    display: inline-block;
+    margin: 4px 8px;
+    padding: 6px 10px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: #333;
+}
+
+/* highlight animation when navigated to */
+.highlight {
+    animation: highlightAnim 2s ease;
+}
+@keyframes highlightAnim {
+    0% { box-shadow: 0 0 0 8px rgba(255,230,100,0.25); }
+    100% { box-shadow: none; }
 }
 </style>
 </head>
 <body>
-
 <header>
-  <h1>VORAKS ALIGHT MOTION PRESETS</h1>
+  <h1>VORAKS PRESETS</h1>
+  <nav>
+    <a href="index.html">HOME</a>|
+    <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>|
+    <a href="#">AFTER EFFECTS</a>|
+    <a href="#">CONTACT</a>|
+  </nav>
+
+  <!-- Custom client-side search (maps queries to anchors) -->
+  <div class="search-container" aria-label="Site search">
+    <input id="siteSearch" type="search" placeholder="Search presets (e.g., Dreamlight)" />
+    <button id="searchBtn">Search</button>
+  </div>
+  <div id="searchSuggestions" class="search-suggestions" aria-live="polite"></div>
 </header>
 
-<div class="search-container">
-  <input type="text" id="searchBox" placeholder="Search preset name...">
-  <button onclick="search()">Search</button>
+<section id="cinematic">
+<h2>Different Types of Colour Correction Presets</h2>
+
+<h3>Cinematic Colour Grading</h3>
+<p>A cinematic colour grading preset.</p>
+
+<!-- 🎨 Image Slider -->
+<div class="slider" id="slider1">
+    <img src="https://i.postimg.cc/kgpj2H1G/New-Project-16-43-E2309.png" class="active" alt="Preview 1">
+    <img src="https://i.postimg.cc/rm8tMV1z/New-Project-16-A1616-C5.png" alt="Preview 2">
 </div>
 
-<!-- Example preset sections -->
-<div id="preset1" class="section"> 
-  <h2>Fire Logo Preset</h2>
-  <p>This preset adds a fiery animated intro to your logo.</p>
+<!-- 🎬 Working Google Drive video embed -->
+<iframe src="https://drive.google.com/file/d/1SMKG13ZsoC-SZjbsVsVWKVj6K_Q3iup4/preview" allow="autoplay" allowfullscreen></iframe>
+
+<!-- 📥 Download button -->
+<br>
+<a href="https://drive.google.com/file/d/1ToAsbkDzw74158b1oRWsXFNJGCxlFmZu/view?usp=drivesdk" target="_blank">
+    <button>Download XML Preset</button>
+</a>
+</section>
+
+<hr>
+
+<section id="dreamlight">
+<h3>Dreamlight Tone Preset</h3>
+<p>A soft dreamlike tone preset for smooth cinematic moods.</p>
+
+<div class="slider" id="slider2">
+    <img src="https://i.postimg.cc/PqF1MP9Y/20250929-195216.jpg" class="active" alt="Preview 1">
+    <img src="https://i.postimg.cc/ydMQvftm/IMG-20250925-18450317.jpg" alt="Preview 2">
 </div>
 
-<div id="preset2" class="section">
-  <h2>Glitch Transition Preset</h2>
-  <p>A cool glitch transition for motion edits.</p>
+<iframe src="https://drive.google.com/file/d/1ba9R1N4CuRjcWp9SBnaVJSCQCxRTna-e/preview" allow="autoplay" allowfullscreen></iframe>
+
+<br>
+<a href="https://drive.google.com/file/d/19hj1BIxghyJ-WSvVbE_8v-6gAfeKTmMY/view?usp=drivesdk" target="_blank">
+    <button>Download XML Preset</button>
+</a>
+</section>
+
+<hr>
+
+<section id="goldenhour">
+<h3>Golden Hour Cinematic</h3>
+<p>Perfect for warm golden lighting and nostalgic vibes.</p>
+
+<div class="slider" id="slider3">
+    <img src="https://i.postimg.cc/Wb3F526v/logo-animation-big-10415.jpg" class="active" alt="Preview 1">
+    <img src="https://i.postimg.cc/FK9QxK3t/IMG-20250925-18444924.jpg" alt="Preview 2">
 </div>
 
-<div id="preset3" class="section">
-  <h2>Velocity Edit Preset</h2>
-  <p>Gives your video smooth, speed-ramped motion.</p>
+<iframe src="https://drive.google.com/file/d/19MMpN9CslV1eMxq3q_9w8tDQoKgMTiMn/preview" allow="autoplay" allowfullscreen></iframe>
+
+<br>
+<a href="https://drive.google.com/file/d/1VptH3YgmHiSze4CsAT41LL9khrPXv_QK/view?usp=drivesdk" target="_blank">
+    <button>Download XML Preset</button>
+</a>
+</section>
+
+<hr>
+
+<section id="darkfade">
+<h3>Dark Fade Preset</h3>
+<p>A deep, moody preset with a cinematic dark fade for dramatic visuals.</p>
+
+<div class="slider" id="slider4">
+    <img src="https://i.postimg.cc/Dy6VwTty/IMG-20250925-18444447.jpg" class="active" alt="Preview 1">
+    <img src="https://i.postimg.cc/bYRVQRLv/1759240001142.png" alt="Preview 2">
 </div>
 
-<div id="preset4" class="section">
-  <h2>Dark Aura Preset</h2>
-  <p>Creates a mysterious dark energy effect around the subject.</p>
-</div>
+<iframe src="https://drive.google.com/file/d/1SMKG13ZsoC-SZjbsVsVWKVj6K_Q3iup4/preview" allow="autoplay" allowfullscreen></iframe>
+
+<br>
+<a href="https://drive.google.com/file/d/13nEm1GVEfq8h-FGpy8OqLye7Ts8ZkrDW/view?usp=drivesdk" target="_blank">
+    <button>Download XML Preset</button>
+</a>
+</section>
+
+<hr>
+
+<footer>
+<p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
+</footer>
 
 <script>
-function search() {
-  const query = document.getElementById("searchBox").value.toLowerCase();
-  const sections = document.querySelectorAll(".section");
-  let found = false;
+/* 🎞️ Reusable image slider logic */
+function createSlider(sliderId) {
+  let current = 0;
+  const slides = document.querySelectorAll(`#${sliderId} img`);
+  if (!slides.length) return;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 3000);
+}
 
-  sections.forEach(section => {
-    const text = section.innerText.toLowerCase();
-    section.style.backgroundColor = ""; // reset highlights
-    if (text.includes(query) && query !== "") {
-      found = true;
-      section.scrollIntoView({ behavior: "smooth", block: "center" });
-      section.style.backgroundColor = "yellow";
-      setTimeout(() => {
-        section.style.backgroundColor = "white";
-      }, 2000);
+/* Initialize all sliders */
+createSlider('slider1');
+createSlider('slider2');
+createSlider('slider3');
+createSlider('slider4');
+
+
+/* ===== Custom client-side search that jumps to sections =====
+   - Edit `searchMap` to add synonyms or new presets.
+   - Works without a server. */
+const searchMap = {
+  // key: array of keywords that should match this section's id
+  cinematic: ['cinematic', 'cinematic grading', 'colour grading', 'color grading', 'grading', 'presets'],
+  dreamlight: ['dreamlight', 'dream light', 'dream', 'soft dream'],
+  goldenhour: ['golden hour', 'goldenhour', 'golden', 'golden hour cinematic'],
+  darkfade: ['dark fade', 'darkfade', 'dark', 'moody', 'deep']
+};
+
+// Build a flat keyword -> selector map for quick lookup
+const keywordToSelector = {};
+for (const id in searchMap) {
+  const keywords = searchMap[id];
+  keywords.forEach(k => keywordToSelector[k.toLowerCase()] = `#${id}`);
+}
+
+// helper: scroll + highlight
+function scrollToAndHighlight(selector) {
+  const el = document.querySelector(selector);
+  if (!el) return false;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  el.classList.add('highlight');
+  setTimeout(() => el.classList.remove('highlight'), 2000);
+  return true;
+}
+
+function performSiteSearch(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) return false;
+
+  // 1) exact keyword match
+  if (keywordToSelector[q]) {
+    return scrollToAndHighlight(keywordToSelector[q]);
+  }
+
+  // 2) partial match with keywords (contains or any word)
+  for (const key in keywordToSelector) {
+    if (key.includes(q) || q.includes(key)) {
+      return scrollToAndHighlight(keywordToSelector[key]);
     }
-  });
+    // check words
+    const qWords = q.split(/\s+/);
+    if (qWords.some(w => key.includes(w))) {
+      return scrollToAndHighlight(keywordToSelector[key]);
+    }
+  }
 
-  if (!found && query !== "") {
-    alert("No matching preset found!");
+  // 3) fallback: check actual section text content for the query
+  const sections = document.querySelectorAll('section');
+  for (const sec of sections) {
+    if (sec.textContent.toLowerCase().includes(q)) {
+      return scrollToAndHighlight(`#${sec.id}`);
+    }
+  }
+
+  // no match
+  return false;
+}
+
+// UI wiring
+const input = document.getElementById('siteSearch');
+const btn = document.getElementById('searchBtn');
+const suggestionsBox = document.getElementById('searchSuggestions');
+
+function showSuggestions() {
+  // clickable suggestions (preset names)
+  const presets = Object.keys(searchMap);
+  suggestionsBox.innerHTML = 'Try: ' + presets.map(p => {
+    const display = p === 'goldenhour' ? 'Golden Hour' : p.charAt(0).toUpperCase() + p.slice(1);
+    return `<a href="#" data-target="#${p}">${display}</a>`;
+  }).join(' ');
+}
+
+// handle suggestion clicks
+suggestionsBox.addEventListener('click', function(e) {
+  const a = e.target.closest('a[data-target]');
+  if (!a) return;
+  e.preventDefault();
+  const target = a.getAttribute('data-target');
+  scrollToAndHighlight(target);
+});
+
+function searchAction() {
+  const q = input.value;
+  const ok = performSiteSearch(q);
+  if (!ok) {
+    suggestionsBox.innerHTML = `No direct match for "<strong>${q}</strong>". Try these: `;
+    showSuggestions();
+  } else {
+    suggestionsBox.innerHTML = '';
   }
 }
+
+btn.addEventListener('click', searchAction);
+input.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    searchAction();
+  }
+});
+
+// show initial suggestions
+showSuggestions();
 </script>
 
 </body>
