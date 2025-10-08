@@ -82,28 +82,70 @@ hr {
     border-radius: 10px;
 }
 
-/* 🔍 Center search bar */
+/* 🔍 Search box styling (centered and compact) */
 .search-container {
     margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+}
+.search-container input[type="search"] {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 260px;
+    outline: none;
+}
+.search-container button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* suggestions */
+.search-suggestions {
+    margin-top: 8px;
     text-align: center;
+    font-size: 14px;
+}
+.search-suggestions a {
+    display: inline-block;
+    margin: 4px 8px;
+    padding: 6px 10px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: #333;
+}
+
+/* highlight animation when navigated to */
+.highlight {
+    animation: highlightAnim 2s ease;
+}
+@keyframes highlightAnim {
+    0% { box-shadow: 0 0 0 8px rgba(255,230,100,0.25); }
+    100% { box-shadow: none; }
 }
 </style>
 </head>
 <body>
 <header>
-<h1>VORAKS PRESETS</h1>
-<nav>
-<a href="index.html">HOME</a>|
-<a href="ALIGHTMOTION.html">ALIGHT MOTION</a>|
-<a href="#">AFTER EFFECTS</a>|
-<a href="#">CONTACT</a>|
-</nav>
+  <h1>VORAKS PRESETS</h1>
+  <nav>
+    <a href="index.html">HOME</a>|
+    <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>|
+    <a href="#">AFTER EFFECTS</a>|
+    <a href="#">CONTACT</a>|
+  </nav>
 
-<!-- 🔍 Google Search Bar -->
-<div class="search-container">
-<script async src="https://cse.google.com/cse.js?cx=3097570d1a03542a8"></script>
-<div class="gcse-search"></div>
-</div>
+  <!-- Custom client-side search (maps queries to anchors) -->
+  <div class="search-container" aria-label="Site search">
+    <input id="siteSearch" type="search" placeholder="Search presets (e.g., Dreamlight)" />
+    <button id="searchBtn">Search</button>
+  </div>
+  <div id="searchSuggestions" class="search-suggestions" aria-live="polite"></div>
 </header>
 
 <section id="cinematic">
@@ -196,6 +238,7 @@ hr {
 function createSlider(sliderId) {
   let current = 0;
   const slides = document.querySelectorAll(`#${sliderId} img`);
+  if (!slides.length) return;
   setInterval(() => {
     slides[current].classList.remove('active');
     current = (current + 1) % slides.length;
@@ -208,6 +251,113 @@ createSlider('slider1');
 createSlider('slider2');
 createSlider('slider3');
 createSlider('slider4');
+
+
+/* ===== Custom client-side search that jumps to sections =====
+   - Edit `searchMap` to add synonyms or new presets.
+   - Works without a server. */
+const searchMap = {
+  // key: array of keywords that should match this section's id
+  cinematic: ['cinematic', 'cinematic grading', 'colour grading', 'color grading', 'grading', 'presets'],
+  dreamlight: ['dreamlight', 'dream light', 'dream', 'soft dream'],
+  goldenhour: ['golden hour', 'goldenhour', 'golden', 'golden hour cinematic'],
+  darkfade: ['dark fade', 'darkfade', 'dark', 'moody', 'deep']
+};
+
+// Build a flat keyword -> selector map for quick lookup
+const keywordToSelector = {};
+for (const id in searchMap) {
+  const keywords = searchMap[id];
+  keywords.forEach(k => keywordToSelector[k.toLowerCase()] = `#${id}`);
+}
+
+// helper: scroll + highlight
+function scrollToAndHighlight(selector) {
+  const el = document.querySelector(selector);
+  if (!el) return false;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  el.classList.add('highlight');
+  setTimeout(() => el.classList.remove('highlight'), 2000);
+  return true;
+}
+
+function performSiteSearch(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) return false;
+
+  // 1) exact keyword match
+  if (keywordToSelector[q]) {
+    return scrollToAndHighlight(keywordToSelector[q]);
+  }
+
+  // 2) partial match with keywords (contains or any word)
+  for (const key in keywordToSelector) {
+    if (key.includes(q) || q.includes(key)) {
+      return scrollToAndHighlight(keywordToSelector[key]);
+    }
+    // check words
+    const qWords = q.split(/\s+/);
+    if (qWords.some(w => key.includes(w))) {
+      return scrollToAndHighlight(keywordToSelector[key]);
+    }
+  }
+
+  // 3) fallback: check actual section text content for the query
+  const sections = document.querySelectorAll('section');
+  for (const sec of sections) {
+    if (sec.textContent.toLowerCase().includes(q)) {
+      return scrollToAndHighlight(`#${sec.id}`);
+    }
+  }
+
+  // no match
+  return false;
+}
+
+// UI wiring
+const input = document.getElementById('siteSearch');
+const btn = document.getElementById('searchBtn');
+const suggestionsBox = document.getElementById('searchSuggestions');
+
+function showSuggestions() {
+  // clickable suggestions (preset names)
+  const presets = Object.keys(searchMap);
+  suggestionsBox.innerHTML = 'Try: ' + presets.map(p => {
+    const display = p === 'goldenhour' ? 'Golden Hour' : p.charAt(0).toUpperCase() + p.slice(1);
+    return `<a href="#" data-target="#${p}">${display}</a>`;
+  }).join(' ');
+}
+
+// handle suggestion clicks
+suggestionsBox.addEventListener('click', function(e) {
+  const a = e.target.closest('a[data-target]');
+  if (!a) return;
+  e.preventDefault();
+  const target = a.getAttribute('data-target');
+  scrollToAndHighlight(target);
+});
+
+function searchAction() {
+  const q = input.value;
+  const ok = performSiteSearch(q);
+  if (!ok) {
+    suggestionsBox.innerHTML = `No direct match for "<strong>${q}</strong>". Try these: `;
+    showSuggestions();
+  } else {
+    suggestionsBox.innerHTML = '';
+  }
+}
+
+btn.addEventListener('click', searchAction);
+input.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    searchAction();
+  }
+});
+
+// show initial suggestions
+showSuggestions();
 </script>
 
 </body>
