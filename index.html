@@ -32,6 +32,46 @@
       text-decoration: none;
     }
 
+    /* New style for the login section to fit in the header */
+    #auth-ui {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    #auth-ui button {
+        background: #34a853; /* Google-like green for visibility */
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 5px;
+        font-size: 14px;
+    }
+    #auth-ui button:hover {
+        background: #2b8442;
+    }
+
+    /* Style for the access status text */
+    #content-status {
+        color: #ffcc00; /* Gold color to stand out in the black header */
+        font-weight: bold;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    
+    /* Style for the unlocked PRO content section */
+    #proContent {
+        border: 2px solid #ffcc00; /* Gold border */
+        padding: 20px;
+        margin-top: 20px;
+        background: #fffbe6; /* Light background for the content box */
+        color: black;
+        border-radius: 8px;
+    }
+    #proContent h2 {
+        color: #333;
+    }
+    
     section {
       padding: 20px;
     }
@@ -104,18 +144,33 @@
       <a href="#">AFTER EFFECTS</a>|
       <a href="#">CONTACT</a>|
     </nav>
-  </header>
+
+    <div id="auth-ui">
+        <p id="content-status">Please sign in to check your access.</p> 
+
+        <button id="signInButton">Sign In with Google</button>
+        <button id="signOutButton" style="display: none;">Sign Out</button>
+    </div>
+    </header>
 
   <div class="container">
     <section id="HERO">
       <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
       <p>HUNDREDS OF FREE AND PAID PRESETS TO LEVEL UP YOUR EDITS</p>
-      <button>Shop Now</button>
-    </section>
+      
+      <button id="shopNowButton">Shop Now</button> 
+      
+      <div id="proContent" style="display: none;">
+          <h2>⭐ PRO Access UNLOCKED!</h2>
+          <p>Thank you for your support! You now have access to all premium features and downloads.</p>
+          <a href="#" style="background: #34a853; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; display: inline-block; margin-top: 10px;">
+              Download PRO Presets
+          </a>
+      </div>
+      </section>
 
     <section id="presets">
       <h2>PRESET COLLECTION</h2>
-
       <a href="ALIGHTMOTION.html" class="preset-link">
         <img src="alight_motion1.png" alt="ALIGHT MOTION PRESETS">
         <span class="preset-text">ALIGHT MOTION PRESETS</span>
@@ -151,5 +206,31 @@
   <footer>
     <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
   </footer>
-</body>
+  
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  
+  <script>
+    // This is the configuration you copied from the Firebase Console
+    const firebaseConfig = {
+      apiKey: "AIzaSyBJWTFpRPuMnBMshNcxDpHs_Su5Mmvp6tM",
+      authDomain: "voraks-presets.firebaseapp.com",
+      projectId: "voraks-presets",
+      storageBucket: "voraks-presets.firebasestorage.app",
+      messagingSenderId: "1070202818323",
+      appId: "1:1070202818323:web:7f4589aa58af3c4fe354e6",
+      measurementId: "G-0GLZH4TGBZ"
+    };
+    
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    // You can now access services like: app.auth() and app.firestore()
+  </script>
+
+  <script src="app.js"></script>
+  
+  </body>
 </html>
