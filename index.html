@@ -214,21 +214,28 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   
   <script>
-    // **IMPORTANT: PASTE YOUR NEW SECURE API KEY HERE BEFORE PUSHING TO GITHUB!**
-    const firebaseConfig = {
-      apiKey: "AIzaSyCWTiA73gxpYRem5sAp5MspD1POgvnybAE", 
-      authDomain: "voraks-presets.firebaseapp.com",
-      projectId: "voraks-presets",
-      storageBucket: "voraks-presets.firebasestorage.app",
-      messagingSenderId: "1070202818323",
-      appId: "1:1070202818323:web:7f4589aa58af3c4fe354e6",
-      measurementId: "G-0GLZH4TGBZ"
-    };
-    
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    // You can now access services like: app.auth() and app.firestore()
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBJWTFpRPuMnBMshNcxDpHs_Su5Mmvp6tM",
+    authDomain: "voraks-presets.firebaseapp.com",
+    projectId: "voraks-presets",
+    storageBucket: "voraks-presets.firebasestorage.app",
+    messagingSenderId: "1070202818323",
+    appId: "1:1070202818323:web:c2bb3b8016c52890e354e6",
+    measurementId: "G-NDNGN9S4Z1"
+  };
+  
+  // CRITICAL: Initialize the Firebase App and make it globally available
+  // The 'app' variable will be used in app.js
+  const app = firebase.initializeApp(firebaseConfig);
+  
+  // Also make the core services available globally for app.js to use them
+  const auth = app.auth();
+  const db = app.firestore();
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+
   </script>
+  
 
   <script src="app.js"></script>
   
